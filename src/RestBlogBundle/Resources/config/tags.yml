@@ -1,0 +1,31 @@
+rest_blog.tags.list:
+    path: /
+    methods: [ GET ]
+    defaults:
+        _controller: RestBlogBundle:Tag:tagList
+
+rest_blog.tags.add:
+    path: /{tagName}
+    methods: [ POST ]
+    defaults:
+        _controller: RestBlogBundle:Tag:addTag
+
+rest_blog.tags.delete:
+    path: /{tagName}
+    methods: [ DELETE ]
+    defaults:
+        _controller: RestBlogBundle:Tag:deleteTag
+    requirements:
+        id: \d+
+
+rest_blog.tags.posts_by_tag.count:
+    path: /{tagNames}/count
+    methods: [ GET ]
+    defaults:
+        _controller: RestBlogBundle:Tag:postsByTagCount
+
+rest_blog.tags.posts_by_tag:
+    path: /{tagNames}
+    methods: [ GET ]
+    defaults:
+        _controller: RestBlogBundle:Tag:postsByTag

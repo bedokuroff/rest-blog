@@ -1,0 +1,43 @@
+rest_blog.posts.list:
+    path: /
+    methods: [ GET ]
+    defaults:
+        _controller: RestBlogBundle:Post:postList
+
+rest_blog.posts.item:
+    path: /{id}
+    methods: [ GET ]
+    defaults:
+        _controller: RestBlogBundle:Post:viewSinglePost
+    requirements:
+        id: \d+
+
+rest_blog.posts.add:
+    path: /
+    methods: [ POST ]
+    defaults:
+        _controller: RestBlogBundle:Post:addPost
+
+rest_blog.posts.delete:
+    path: /{id}
+    methods: [ DELETE ]
+    defaults:
+        _controller: RestBlogBundle:Post:deletePost
+    requirements:
+        id: \d+
+
+rest_blog.posts.edit:
+    path: /{id}
+    methods: [ PUT ]
+    defaults:
+        _controller: RestBlogBundle:Post:editPost
+    requirements:
+        id: \d+
+
+rest_blog.posts.add_tags:
+    path: /{id}/{tagNames}
+    methods: [ PUT ]
+    defaults:
+        _controller: RestBlogBundle:Post:addTagsToPost
+    requirements:
+        id: \d+

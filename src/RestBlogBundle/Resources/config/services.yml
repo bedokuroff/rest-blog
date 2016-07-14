@@ -1,0 +1,38 @@
+services:
+    rest_blog.param_converter.post:
+        class: RestBlogBundle\Request\ParamConverter\PostParamConverter
+        tags:
+            - { name: request.param_converter, priority: 255, name: post_converter }
+
+    rest_blog.doctrine.event_listener.post_tag_resolve:
+        class: RestBlogBundle\EventListener\PostTagsResolveEventListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    rest_blog.doctrine.event_listener.send_notification:
+        class: RestBlogBundle\EventListener\PostSendNotificationEventListener
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+        arguments:
+            - "@old_sound_rabbit_mq.rest_blog.amqp.send_mail_producer"
+
+    rest_blog.doctrine.event_listener.post_deletion:
+        class: RestBlogBundle\EventListener\PostDeletionEventListener
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: monolog.logger, channel: post_deletion }
+        arguments:
+            - "@logger"
+    rest_blog.amqp.send_mail_consumer:
+        class: RestBlogBundle\Consumer\SendMailConsumer
+        arguments:
+            - "@rest_blog.service.send_mail"
+
+    rest_blog.service.send_mail:
+        class: RestBlogBundle\Mail\SendMailService
+        arguments:
+            - "@templating"
+            - "@mailer"
+            - "%rest_blog.notify_from%"
+            - "%rest_blog.notify_email_address%"

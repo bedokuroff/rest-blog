@@ -1,0 +1,7 @@
+rest_blog.posts:
+    prefix: /posts
+    resource: "@RestBlogBundle/Resources/config/posts.yml"
+
+rest_blog.tags:
+    prefix: /tags
+    resource: "@RestBlogBundle/Resources/config/tags.yml"

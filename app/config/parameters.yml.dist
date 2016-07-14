@@ -1,0 +1,28 @@
+parameters:
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    redis_host: localhost
+    redis_port: 6379
+
+    rest_blog.db.default_limit: 15
+    rest_blog.db.default_offset: 0
+
+    rabbitmq_host: localhost
+    rabbitmq_port: 5672
+    rabbitmq_user: guest
+    rabbitmq_password: guest
+    rabbitmq_vhost: /
+
+    rest_blog.notify_email_address: admin@example.com
+    rest_blog.notify_from: robot@example.com
