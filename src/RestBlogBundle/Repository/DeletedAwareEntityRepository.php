@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 
 /**
  * In this custom repository we override several base fetching methods to make them aware of
- * 'deleted' field in the tables, as we use 'soft-delete' mechanics in our database.
+ * 'deleted' field in the tables transparently, as we use 'soft-delete' mechanics in our database.
  */
 class DeletedAwareEntityRepository extends EntityRepository
 {

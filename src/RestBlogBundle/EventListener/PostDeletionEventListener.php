@@ -12,6 +12,9 @@ class PostDeletionEventListener
      */
     private $logger;
 
+    /**
+     * @param LoggerInterface $logger
+     */
     public function __construct(LoggerInterface $logger)
     {
 

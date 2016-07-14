@@ -1,6 +1,9 @@
 <?php
 namespace RestBlogBundle\Entity;
 
+/**
+ * This interface is a part of 'Soft-Delete' implementation.
+ */
 interface DeletedAwareInterface
 {
     /**
